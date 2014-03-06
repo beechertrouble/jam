@@ -1,0 +1,20 @@
+{
+	"name": "jam",
+	"version": "0.0.1",
+	"authors": [
+		"beecher"
+	],
+	"description": "basic jams",
+	"main": "pub/css/main.css",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {
+		"jquery": null,
+		"requirejs": null
+	},
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"pub/js/libs"
+	]
+}

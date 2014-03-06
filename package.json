@@ -1,0 +1,12 @@
+{
+	"name": "jams",
+	"version": "0.0.1",
+	"devDependencies": {
+		"grunt-cli": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-less": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-contrib-requirejs": "latest"
+	}
+}
