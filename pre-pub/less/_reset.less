@@ -49,21 +49,9 @@ table {
 :focus {outline: 0;}
 */
 
-* {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-*:before, *:after {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	box-sizing: border-box;
-}
+/* splitting these up is faster */
+* {.box-sizing(border-box)}
+*:before, *:after {.box-sizing(border-box)}
 
 /* ===================================  */
 
@@ -97,16 +85,12 @@ a:link,
 a:visited, 
 a:active {
 	text-decoration:none;
-	color:#6A9E2E;
+	color:@link-color;
 	font-size: inherit;
-	-moz-transition: color 0.3s ease-out;
-	-webkit-transition: color 0.3s ease-out;
-	-o-transition: color 0.3s ease-out;
-	-ms-transition: color 0.3s ease-out;
-	transition: color 0.3s ease-out;
+	.transition('color 0.3s ease-out')
 }
 	a:focus, 
-	a:hover {color:#000;}
+	a:hover {color:@link-color-hover;}
 
 p,
 .fake_p {
