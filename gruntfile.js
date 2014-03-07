@@ -8,9 +8,9 @@ module.exports = function(grunt) {
 			production: {
 				options: {
 					baseUrl : "./",
-					name : "assets-prep/js/main",
-					mainConfigFile: "assets-prep/js/main.js",
-					out: "pub/js/req.min.js"
+					name : "pre-pub/js/main",
+					mainConfigFile: "pre-pub/js/main.js",
+					out: "pub/js/main.min.js"
 				}
 			}
 		},
@@ -20,8 +20,8 @@ module.exports = function(grunt) {
 					separator: ';'
 				},
 				src: [
-					'pub/js/libs/requirejs/require.js',
-					'pub/js/req.min.js'
+					'pre-pub/js/libs/requirejs/require.js',
+					'pub/js/main.min.js'
 				],
 				dest: 'pub/js/main.min.js'
 			},
@@ -37,20 +37,28 @@ module.exports = function(grunt) {
 			}
 		},
 		less: {
-			style: {
+			dev: {
 				files: {
-					"pub/css/style.css" : "assets-prep/less/style.less"
+					"pub/css/style.css" : "pre-pub/less/style.less"
+				}
+			},
+			production : {
+				options: {
+					cleancss: true
+				},
+				files: {
+					"pub/css/style.min.css" : "pre-pub/less/style.less"
 				}
 			}
 		},
 		watch: {
 			js: {
-				files: ['assets-prep/js/*.js'],
+				files: ['pre-pub/js/*.js'],
 				tasks: ['requirejs:production', 'concat:js']
 			},
 			css: {
-				files: ['assets-prep/less/*.less'],
-				tasks: ['less:style']
+				files: ['pre-pub/less/*.less'],
+				tasks: ['less:production']
 			}
 		}
 	});
