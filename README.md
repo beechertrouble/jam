@@ -16,5 +16,5 @@ DEV :
 - optional : get grunt to watch your shit : <code>grunt watch</code> 
 	- to stop watching: <code>CNTRL+c</code>
 - the grunt tasks will combine and minify the css and js so that they'll be referenced like this :
-	<code><link rel="stylesheet" href="pub/css/style.min.css" type="text/css"></code>
-	<code><script src="pub/js/main.min.js"></script></code>
+	<code>pub/css/style.min.css</code>
+	<code>pub/js/main.min.js</code>
