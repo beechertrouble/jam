@@ -1,0 +1,184 @@
+
+// Mixins
+// --------------------------
+
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+	-webkit-animation: @name @duration @delay @ease;
+	-moz-animation:    @name @duration @delay @ease;
+	-ms-animation:     @name @duration @delay @ease;
+}
+.animation-iteration-count (@count) {
+	-webkit-animation-iteration-count: @count;
+	-webkit-iteration-count: @count;
+	-moz-animation-iteration-count: @count; 
+	-o-animation-iteration-count: @count;
+	animation-iteration-count: @count;	
+}
+.animation-pause {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+     animation-play-state: paused;
+}
+.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}
+.transform(@string){
+	-webkit-transform: @string;
+	-moz-transform: 	 @string;
+	-ms-transform: 		 @string;
+	-o-transform: 		 @string;
+}
+
+
+//
+// flexy
+//
+
+.display_flex() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+.flex(@vals:1 auto) {
+	-webkit-box-flex: @vals;
+	-moz-box-flex: @vals;
+	-webkit-flex: @vals;
+	-ms-flex: @vals;
+	flex: @vals;
+}
+.align-items(@align:center) {
+	-moz-align-items: @align;
+	-webkit-align-items: @align;
+	-o-align-items: @align;
+	-ms-align-items: @align;
+	align-items: @align;
+}
+
+
+//
+// more fun ...
+//
+
+.break(@style, @point) {
+	@media only screen and (max-width: @point) {
+		@style();
+	}
+}
+
+.break_up(@style, @point) {
+	@media only screen and (min-width: @point) {
+		@style();
+	}
+}
+
+.break_vert(@style, @point) {
+	@media only screen and (max-height: @point) {
+		@style();
+	}
+}
+
+
+@function parseInt($n) { /* 2 */
+	@return $n / ($n * 0 + 1);
+}
+.pxToRem (@sizeInPx, @remInPx) {
+	@rem: @sizeInPx / @remInPx;
+	font-size: unit(@sizeInPx, px);
+	font-size: unit(@rem, rem);
+}
+.remmy (@sizeInrem, @remInPx) {
+	@px: @sizeInrem * @remInPx;
+	font-size: unit(@px, px);
+	font-size: unit(@sizeInrem, rem);
+}
+
+
+.clearfix() {
+	&:after {
+		content: " ";
+		float: none;
+		position: relative;
+		display: block;
+		clear: both;
+		visibility: hidden;
+		height: 0;
+	}
+}
+
+.linky(@style, @hoverStyle) {
+	@style();
+	&:link,
+	&:visited {
+		@style();
+	}
+	&.active,
+	&:active,
+	&:hover,
+	&.active,
+	&:link.active,
+	&:visited.active {
+		@hoverStyle();
+	}
+}
+.block() {
+	position: relative;
+	display: block;
+}
+.left() {
+	float: left;
+	clear: none;
+}
+.unfloat() {
+	float: none;
+	clear: both;
+}
+
+.font_rendering() {
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+//
+// form elements reset
+//
+.no_appearance() {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+
+//
+// really verbose reset to avoid being overridden
+//
+.full_reset() {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	.box-sizing(border-box);
+	background: transparent none;
+	font-family: sans-serif; 
+	-ms-text-size-adjust: 100%; 
+	-webkit-text-size-adjust: 100%; 
+	overflow: visible;
+	visibility: visible;
+	font-size: 16px;
+	text-transform: none;
+	line-height: 1;
+	letter-spacing: normal;
+	vertical-align: baseline;
+	font-weight: normal;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+

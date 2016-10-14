@@ -1,0 +1,373 @@
+/**
+* utility classes 
+*/ 
+
+
+.screen_reader_only {
+	clip: rect(1px 1px 1px 1px); /* IE 6/7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap; /* added line */
+	width: 1px;
+}
+
+.fully_hidden {
+	display: none;
+}
+
+.blocky {
+	.blocky();
+}
+
+.inline_block {
+	position: relative;
+	display: inline-block;
+}
+
+.show_to_focus {
+	.screen_reader_only();
+	transition: all 0.3s;
+	
+	&:focus {
+		left: 0;
+		top:0;
+		width: auto;
+		height: auto;
+		text-indent: 0;
+		z-index: @z_top;
+	}
+	
+}
+
+.window_cover {
+	position: fixed;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.centered_max {
+	.centered();
+	max-width: @max_width;
+}
+
+//	
+// floats and percentages ...
+//
+
+.left,
+.right {
+	.block();
+	float: left;
+	clear: none;
+}
+.right {
+	float: right;
+}
+
+.three_quarters,
+.two_thirds,
+.half,
+.third,
+.quarter,
+.fifth {
+}
+
+	.three_quarters { 
+		width: 75%; 
+	} 
+	.two_thirds { 
+		width: 66.6666%;
+		width: calc((100% / 3) * 2); 
+	} 
+	.half { 
+		width: 50%;
+	} 
+	.third { 
+		width: 33.3333%;
+		width: calc(100% / 3); 
+	} 
+	.quarter { 
+		width: 25%;
+	} 
+	.fifth {
+		width: 20%;
+	}
+
+
+.clearfix {
+	.clearfix();
+}
+.clear_left {
+	clear: left;
+}
+.clear_right {
+	clear: right;
+}
+.clear_both {
+	clear: both;
+}
+
+//
+// absolute positionings....
+// 
+.abs_t, .abs_tr, .abs_tl,
+.abs_r,
+.abs_b, .abs_br, .abs_bl,
+.abs_l,
+.abs_fill {
+	position: absolute;
+}
+
+.abs_t, .abs_tr, .abs_tl, .abs_fill {
+	top: 0;
+}
+.abs_r, .abs_tr, .abs_br {
+	right: 0;
+}
+.abs_b, .abs_br, .abs_bl {
+	bottom: 0;
+}
+.abs_l, .abs_tl, .abs_bl, .abs_fill  {
+	left: 0;
+}
+.abs_fill {
+	width: 100%;
+	height: 100%;
+} 
+
+
+/* ============================== pad and margin jams ========= */
+
+@iterations: 3;
+.pad-loop (@i) when (@i > 1) {
+	.pad@{i} {
+		padding: @i * @pad;
+	}
+	.pad-loop(@i - 1);
+}
+.pad-loop (@iterations);
+.pad {padding: @pad;}
+
+.pad-v-loop (@i) when (@i > 1) {
+	.pad_v@{i} {
+		padding-top: @i * @pad;
+		padding-bottom: @i * @pad;
+	}
+	.pad-v-loop(@i - 1);
+}
+.pad-v-loop (@iterations);
+.pad_v {
+	padding-top: @pad;
+	padding-bottom: @pad;
+}
+
+.pad-h-loop (@i) when (@i > 1) {
+	.pad_h@{i} {
+		padding-right: @i * @pad;
+		padding-left: @i * @pad;
+	}
+	.pad-h-loop(@i - 1);
+}
+.pad-h-loop (@iterations);
+.pad_h {
+	padding-right: @pad;
+	padding-left: @pad;
+}
+
+.pad-t-loop (@i) when (@i > 1) {
+	.pad_t@{i} {
+		padding-top: @i * @pad;
+	}
+	.pad-t-loop(@i - 1);
+}
+.pad-t-loop (@iterations);
+.pad_t {
+	padding-top: @pad;
+}
+
+.pad-b-loop (@i) when (@i > 1) {
+	.pad_b@{i} {
+		padding-bottom: @i * @pad;
+	}
+	.pad-b-loop(@i - 1);
+}
+.pad-b-loop (@iterations);
+.pad_b {
+	padding-bottom: @pad;
+}
+
+.pad-r-loop (@i) when (@i > 1) {
+	.pad_r@{i} {
+		padding-right: @i * @pad;
+	}
+	.pad-r-loop(@i - 1);
+}
+.pad-r-loop (@iterations);
+.pad_r {
+	padding-right: @pad;
+}
+
+.pad-l-loop (@i) when (@i > 1) {
+	.pad_l@{i} {
+		padding-left: @i * @pad;
+	}
+	.pad-l-loop(@i - 1);
+}
+.pad-l-loop (@iterations);
+.pad_l{
+	padding-left: @pad;
+}
+
+
+.mar-loop (@i) when (@i > 1) {
+	.mar@{i} {
+		margin: @i * @pad;
+	}
+	.mar-loop(@i - 1);
+}
+.mar-loop (@iterations);
+.mar {margin: @pad;}
+
+.mar-v-loop (@i) when (@i > 1) {
+	.mar_v@{i} {
+		margin-top: @i * @pad;
+		margin-bottom: @i * @pad;
+	}
+	.mar-v-loop(@i - 1);
+}
+.mar-v-loop (@iterations);
+.mar_v {
+	margin-top: @pad;
+	margin-bottom: @pad;
+}
+
+.mar-h-loop (@i) when (@i > 1) {
+	.mar_h@{i} {
+		margin-right: @i * @pad;
+		margin-left: @i * @pad;
+	}
+	.mar-h-loop(@i - 1);
+}
+.mar-h-loop (@iterations);
+.mar_h {
+	margin-right: @pad;
+	margin-left: @pad;
+}
+
+.mar-t-loop (@i) when (@i > 1) {
+	.mar_t@{i} {
+		margin-top: @i * @pad;
+	}
+	.mar-t-loop(@i - 1);
+}
+.mar-t-loop (@iterations);
+.mar_t {
+	margin-top: @pad;
+}
+
+.mar-b-loop (@i) when (@i > 1) {
+	.mar_b@{i} {
+		margin-bottom: @i * @pad;
+	}
+	.mar-b-loop(@i - 1);
+}
+.mar-b-loop (@iterations);
+.mar_b {
+	margin-bottom: @pad;
+}
+
+.mar-l-loop (@i) when (@i > 1) {
+	.mar_l@{i} {
+		margin-left: @i * @pad;
+	}
+	.mar-l-loop(@i - 1);
+}
+.mar-l-loop (@iterations);
+.mar_l {
+	margin-left: @pad;
+}
+
+.mar-r-loop (@i) when (@i > 1) {
+	.mar_r@{i} {
+		margin-right: @i * @pad;
+	}
+	.mar-r-loop(@i - 1);
+}
+.mar-r-loop (@iterations);
+.mar_r {
+	margin-right: @pad;
+}
+
+
+
+.pad_half {
+	padding: @pad * 0.5;
+}
+.pad_half_t, .pad_half_v {
+	padding-top: @pad * 0.5;
+}
+.pad_half_r, .pad_half_h {
+	padding-right: @pad * 0.5;
+}
+.pad_half_b, .pad_half_v {
+	padding-bottom: @pad * 0.5;
+}
+.pad_half_l, .pad_half_h {
+	padding-left: @pad * 0.5;
+}
+
+.mar_half {
+	margin: @pad * 0.5;
+}
+.mar_half_t, .mar_half_v {
+	margin-top: @pad * 0.5;
+}
+.mar_half_r, .mar_half_h {
+	margin-right: @pad * 0.5;
+}
+.mar_half_b, .mar_half_v {
+	margin-bottom: @pad * 0.5;
+}
+.mar_half_l, .mar_half_h {
+	margin-left: @pad * 0.5;
+}
+
+
+
+
+//
+//
+//
+
+
+
+.bg_cover {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+
+//
+//
+//
+
+.uppercase {text-transform: uppercase;}
+.textright { text-align: right; }
+.textleft { text-align: left; }
+.textcenter {text-align: center; }
+.fontnormal { font-style: normal; }
+

@@ -1,72 +1,90 @@
 module.exports = function(grunt) {
 	
-	grunt.registerTask('watch', [ 'watch' ]);
-	grunt.registerTask('default', 'lint requirejs'); 
+	/**
+	* !Register your tasks up here , you maniac! ...
+	* i.e. : grunt.registerTask('default', 'less'); 
+	*/
+	grunt.registerTask('default', 'less'); 
+	grunt.registerTask('watch', ['watch:dev']);
 	
+	
+	/**
+	* !Configuration Variables ...
+	*/ 
+	var cnf = {
+		src: 'src',
+		pub: 'app/docroot/',
+		vendor: 'app/docroot/vendor',
+		// tmp: 'app/src/tmp',
+		pkg: grunt.file.readJSON('package.json'),
+		banner: "/**" +
+					'\n* <%= cnf.pkg.name %>' +
+					'\n* v<%= cnf.pkg.version %>' +
+					'\n* <%= grunt.template.today("yyyy-mm-dd hh:MM:ss TT") %> ' +
+					"\n*/ \n\n"
+	};
+	
+	
+	/**
+	* !Configure your tasks ...
+	*/
 	grunt.initConfig({
-		requirejs: {
-			production: {
-				options: {
-					baseUrl : "./",
-					name : "pre-pub/js/main",
-					mainConfigFile: "pre-pub/js/main.js",
-					out: "pub/js/main.min.js"
-				}
-			}
-		},
-		concat: {
-			js: {
-				options: {
-					separator: ';'
-				},
-				src: [
-					'pre-pub/js/libs/requirejs/require.js',
-					'pub/js/main.min.js'
-				],
-				dest: 'pub/js/main.min.js'
-			},
-		},
-		uglify: {
-			options: {
-				mangle: false
-			},
-			js: {
-				files: {
-					'pub/js/main.min.js': ['pub/js/main.min.js']
-				}
-			}
-		},
+		
+		//
+		// make the config variable available here ...
+		//
+		cnf : cnf,
+		
+		
+		//
+		// the lessening ...
+		//
 		less: {
 			dev: {
-				files: {
-					"pub/css/style.css" : "pre-pub/less/style.less"
-				}
-			},
-			production : {
 				options: {
-					cleancss: true
+					cleancss: true,
+					banner: "<%= cnf.banner %>"
 				},
 				files: {
-					"pub/css/style.min.css" : "pre-pub/less/style.less"
+					"<%= cnf.pub %>/css/main.css" : "<%= cnf.src %>/less/main.less",
+					"<%= cnf.pub %>/css/noscript.css" : "<%= cnf.src %>/less/noscript.less"
+				}
+			},
+			production: {
+				options: {
+					cleancss: true,
+					compress: true,
+					banner: "<%= cnf.banner %>"
+				},
+				files: {
+					"<%= cnf.pub %>/css/main.min.css" : "<%= cnf.src %>/less/main.less",
+					"<%= cnf.pub %>/css/noscript.min.css" : "<%= cnf.src %>/less/noscript.less"
 				}
 			}
 		},
+		
+		//
+		// watching your stuff for changes ...
+		//
 		watch: {
-			js: {
-				files: ['pre-pub/js/*.js'],
-				tasks: ['requirejs:production', 'concat:js']
-			},
-			css: {
-				files: ['pre-pub/less/*.less'],
-				tasks: ['less:production']
+
+			dev: {
+				files: [
+					'<%= cnf.src %>/less/*.less',
+					'<%= cnf.src %>/less/*/*.less',
+					'<%= cnf.src %>/less/*/*/*.less',
+					'<%= cnf.src %>/less/*/*/*/*.less'
+				],
+				tasks: ['less:dev']
 			}
 		}
+		
 	});
 	
-	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	/**
+	* !Load your tasks below ...
+	*/
 	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 };

@@ -1,0 +1,34 @@
+h1, h2, h3, h4 {
+	line-height: 1.15;
+	font-weight: 500;
+}
+
+h1, h2, h3 {
+	margin-bottom: @pad;	
+}
+
+h1, h2, h3,
+.fake_h1, .fake_h2, .fake_h3 {
+	font-weight: bold;
+}
+
+h1,
+.fake_h1 {
+	&:extend(.font_60);
+}
+
+
+h2, 
+.fake_h2 {
+	&:extend(.font_29);
+} 
+
+h3,
+.fake_h3 {
+	&:extend(.font_20);
+}
+
+h4,
+.fake_h4 {
+	&:extend(.font_18);
+}

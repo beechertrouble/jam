@@ -1,5 +1,5 @@
 {
-	"name": "jam",
+	"name": "jammer",
 	"version": "0.0.1",
 	"authors": [
 		"beecher"
@@ -9,12 +9,9 @@
 	"license": "MIT",
 	"private": true,
 	"dependencies": {
-		"jquery": null,
-		"requirejs": null
 	},
 	"ignore": [
 		"**/.*",
-		"node_modules",
-		"pre-pub/js/libs"
+		"node_modules"
 	]
 }

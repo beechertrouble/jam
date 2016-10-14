@@ -1,0 +1,183 @@
+/*======== Buttons ==========*/
+button,
+input[type="button"],
+input[type="submit"],
+.btn {
+	
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	
+	
+	color: @dk_grey;
+	.font_body();
+	.font_bold();
+	
+	background-color: @blue;
+	border: @border_width solid @blue;
+	border: none;
+	font-size: 1em;
+	line-height: 1;
+	text-align: center;
+	
+	padding: @pad*1.5 @pad*3;
+	
+	.transition(@button_transition);
+	
+	&:hover {
+		cursor: pointer;
+	}
+	&:hover,
+	&.active,
+	&:active {
+		background-color: @white;
+		border-color: @white;
+	}
+	&:focus {
+		outline: none;
+	}
+	&.disabled,
+	&:disabled {
+		background-color: @lt_grey;
+		color: @md_grey;
+		cursor: not-allowed;
+	}
+	&.inline { 
+		height: 50 / 16em;
+		font-size: 15 / 16em;
+		padding: 4px 12px 4px 6px;
+
+		& [class^="icon-"], 
+		& [class*=" icon-"] {
+			&:before {
+				display: inline;
+				font-size: 28 / 16em;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+a.btn {
+	&:hover,
+	&:active,
+	&.active,
+	&:link,
+	&:visited {
+		color: @white;
+		text-decoration: none;
+	}
+}
+
+label,
+.label {
+	position: relative;
+	display: block;
+	padding:@pad*0.5 0;
+}
+
+label.radio {
+	padding: @pad 0;
+	font-size: 0.9em;
+	line-height: 1;
+	cursor: pointer;
+	
+	&:before {
+		content: "";
+		.blocky();
+		.abs_tl();
+		background:rgba(0,0,0,0.025);
+		width: 99%;
+		height: 100%;
+		z-index: -1;
+		pointer-events: none;
+	}
+	
+	&:hover {
+		
+		&:before {
+			background: rgba(255,255,255,0.25);
+		}
+		
+	}
+	
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+.pseudo_textarea {
+	
+	position: relative;
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	
+	padding:1em;
+	border: 0px none;
+			
+	.font_body();
+	background: rgba(0,0,0,0.025);
+	color: @md_grey;
+	font-size: 1em;
+	line-height: 1;
+
+	transition: background 0.3s, color 0.3s;
+	
+	&:hover {
+		background: rgba(255,255,255,0.25);
+	}
+	
+	&:focus {
+		outline: none;
+	}
+	&:focus,
+	&:active {
+		background: @white;
+		color: @dk_grey;
+	}
+	
+	
+	&:disabled {
+		background-color: @lt_grey;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+	
+	
+	&::-webkit-input-placeholder {
+		font-style: italic;
+		color: @placeholder_color;
+	}
+	&:-moz-placeholder {
+		font-style: italic;
+		color: @placeholder_color;
+	}
+	&::-moz-placeholder {
+		font-style: italic;
+		color: @placeholder_color;
+	}
+	&:-ms-input-placeholder {
+		font-style: italic;
+		color: @placeholder_color; 
+	}
+	
+}
+
+textarea,
+.pseudo_textarea {
+	line-height: 1.5;
+	min-height: 6em;
+	min-width: 100%;
+}
+
+.pseudo_textarea {
+	min-height: 1em;
+}
+
+
